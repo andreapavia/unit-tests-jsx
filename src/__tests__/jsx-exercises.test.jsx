@@ -1,5 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import Hello from "../Hello";
+import { ProfileImageFromImageTag, ProfileImageFromSource } from "../ProfileImageComponents";
+import AvatarComponent from "../AvatarComponent";
 
 describe("JSX Practice exercises", () => {
   describe("JSX basics", () => {
@@ -12,7 +15,7 @@ describe("JSX Practice exercises", () => {
     test("hello john doe", () => {
       const name = "John Doe";
 
-      const HelloWorld = () => null;
+      const HelloWorld = () => <Hello name={name}/>;
 
       render(<HelloWorld />);
       expect(screen.getByText(/Hello, John Doe/)).toBeInTheDocument();
@@ -27,7 +30,7 @@ describe("JSX Practice exercises", () => {
     test("profile image 1", () => {
       const imagePath = "https://placekitten.com/200/300";
 
-      const ProfileImage = () => null;
+      const ProfileImage = () => <ProfileImageFromSource imagePath={imagePath} />;
 
       render(<ProfileImage />);
       expect(screen.getByRole("img")).toHaveAttribute("src", imagePath);
@@ -40,7 +43,7 @@ describe("JSX Practice exercises", () => {
     test("profile image 2", () => {
       const html = `<img src="https://placekitten.com/200/300" style="border: 1px solid blue;" />`;
 
-      const ProfileImage = () => null;
+      const ProfileImage = () => <ProfileImageFromImageTag html={html}/>;
 
       render(<ProfileImage />);
       expect(screen.getByRole("img")).toHaveAttribute(
@@ -62,7 +65,7 @@ describe("JSX Practice exercises", () => {
         image: "https://placekitten.com/200/300",
       };
 
-      const Avatar = () => null;
+      const Avatar = () => <AvatarComponent name={character.name} image={character.image} />;
 
       render(<Avatar />);
       expect(screen.getByRole("heading")).toHaveTextContent(character.name);
@@ -81,7 +84,7 @@ describe("JSX Practice exercises", () => {
       const price = 12;
 
       const ProductPrice = () => {
-        return <p>Price: {price}</p>;
+        return <p>Price: {price.toFixed(2)}</p>;
       };
 
       render(<ProductPrice />);
@@ -101,7 +104,9 @@ describe("JSX Practice exercises", () => {
       const reactLaunchDate = new Date("2013-05-29");
 
       const HelloWorld = () => {
-        return <p>React was launched on {reactLaunchDate.toString()}</p>;
+        const formattedDate = new Intl.DateTimeFormat("en-GB", {weekday: "long"}).format(reactLaunchDate)
+        
+        return <p>React was launched on a {formattedDate}</p>;
       };
 
       render(<HelloWorld />);
