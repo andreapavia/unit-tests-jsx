@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import Hello from "../Hello";
 import { ProfileImageFromImageTag, ProfileImageFromSource } from "../ProfileImageComponents";
 import AvatarComponent from "../AvatarComponent";
+import LearnReactComponent from "../LearnReactComponent";
 
 describe("JSX Practice exercises", () => {
   describe("JSX basics", () => {
@@ -133,12 +134,12 @@ describe("JSX Practice exercises", () => {
           </div>
   `;
 
-      const LearnReactSection = () => null;
+      const LearnReactSection = () => <LearnReactComponent html={html} />;
 
       render(<LearnReactSection />);
       expect(screen.getByRole("heading")).toHaveTextContent(/Learn React/);
       expect(screen.getByRole("list")).toHaveTextContent(
-        "Describing the UIAdding interactivityManaging state"
+        "Describing the UI Adding interactivity Managing state"
       );
     });
 
@@ -154,7 +155,7 @@ describe("JSX Practice exercises", () => {
       </div>
   `;
 
-      const Profile = () => null;
+      const Profile = () => <LearnReactComponent html={html} />;
 
       render(<Profile />);
       expect(screen.getByRole("heading")).toHaveTextContent(/John Doe/);
@@ -170,7 +171,7 @@ describe("JSX Practice exercises", () => {
           <h1>John Doe</h1>
           <img src="https://placekitten.com/200/300"/>
       `;
-      const Profile = () => null;
+      const Profile = () => <LearnReactComponent html={html} />;
 
       render(<Profile />);
       expect(screen.getByRole("heading")).toHaveTextContent(/John Doe/);
@@ -184,7 +185,7 @@ describe("JSX Practice exercises", () => {
     test("profile image 1", () => {
       const html = `<img src="https://placekitten.com/200/300" class="photo" />`;
 
-      const ProfileImage = () => null;
+      const ProfileImage = () => <LearnReactComponent html={html} />;
 
       render(<ProfileImage />);
       expect(screen.getByRole("img")).toHaveAttribute("class", "photo");
@@ -197,7 +198,7 @@ describe("JSX Practice exercises", () => {
     test("customer card", () => {
       const html = `<section data-testid="blueberry"><h1>BlueBerry INC</h1></section>`;
 
-      const CustomerCard = () => null;
+      const CustomerCard = () => <LearnReactComponent html={html} />;
 
       render(<CustomerCard />);
       expect(screen.getByTestId("blueberry")).toBeInTheDocument();
@@ -210,7 +211,7 @@ describe("JSX Practice exercises", () => {
     test("profile image 2", () => {
       const html = `<img src="https://placekitten.com/200/300" style="border-color: red;" />`;
 
-      const ProfileImage = () => null;
+      const ProfileImage = () => <LearnReactComponent html={html} />;
 
       render(<ProfileImage />);
       expect(screen.getByRole("img")).toHaveAttribute(
